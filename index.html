@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8"/>
+	<link rel="stylesheet" href="inc/style.css">
+
+	<script src="inc/error.js"></script>
+
+	<script src="inc/Math/Vector.js"></script>
+
+	<script src="inc/drawJS/ColorType.js"></script>
+	<script src="inc/drawJS/Color.js"></script>
+	<script src="inc/drawJS/style.js"></script>
+	<script src="inc/drawJS/shapes.js"></script>
+	<script src="inc/drawJS/text.js"></script>
+
+	<script src="inc/initialize.js"></script>
+	
+</head>
+<body>
+	<header><h1>Les racines d'une equation du second degrés</h1></header>
+	<div id="contentContainer">
+		<section><h2>ax&sup2 + bx + c = 0</h2>
+			<canvas id="curve" width="700" height="260">Le navigateur n'a pas réussi à charger le canvas</canvas>
+		
+			<div id="rootLabelContainer">
+				<label>Racine 1 : <span id="root1Container"></span></label>
+				<label>Racine 2 : <span id="root2Container"></span></label>
+			</div>
+
+			<input id="aInput" placeholder="a" type="number">
+			<input id="bInput" placeholder="b" type="number">
+			<input id="cInput" placeholder="c" type="number">
+		</section>
+	</div>
+</body>
+</html>
