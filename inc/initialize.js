@@ -5,13 +5,13 @@ let aInput, bInput, cInput;
 let root1Container;
 let root2Container;
 
-let scaleCurve = 1;
+let drawer;
 
 window.onload = init;
 
 function init() {
 	initElements();
-	drawCurve();
+	drawCurve()
 }
 
 function initElements() {
@@ -27,6 +27,8 @@ function declareElements() {
 	canvas = document.getElementById("curve");
 	root1Container = document.getElementById("root1Container");
 	root2Container = document.getElementById("root2Container");
+
+	drawer = new GraphDrawer(canvas);
 }
 
 function setEventListeners() {
@@ -42,20 +44,23 @@ function inputListener() {
 		let b = Number(bInput.value);
 		let c = Number(cInput.value);
 		let delta = Math.pow(b, 2) - 4*a*c;
-
+		
+		drawer.setFunction(x => a*(x**2) + b*x + c);
+		drawCurve();
+		
 		if(delta < 0)
-			setRootsValue("Pas dans R", "Pas dans R"); // TODO : replace by special R char
-		else if(delta === 0)
-			setRootsValue(-b/2*a, undefined);
-		else
+			setRootsValue("Pas dans ℝ");
+		else if(delta === 0) {
+			setRootsValue(-b/2*a);
+		} else {
 			setRootsValue((-b + Math.sqrt(delta))/2*a,
 				      (-b - Math.sqrt(delta))/2*a);
-		drawCurve();	
+		}
 	} else
 		clearRootContainers();
 }
 
-function setRootsValue(root1, root2) {
+function setRootsValue(root1, root2=root1) {
 	clearRootContainers();
 	root1Container.insertAdjacentText("beforeend", root1);
 	root2Container.insertAdjacentText("beforeend", root2);
@@ -67,24 +72,9 @@ function clearRootContainers() {
 }
 
 function drawCurve() {
-	stroke(Color.rgb(255, 110, 110));
-	strokeWeight(3);
-	line(0, canvas.height/2, canvas.width, canvas.height/2);
-	line(canvas.width/2, 0, canvas.width/2, canvas.height);
-
-	stroke(Color.rgb(110, 255, 110));
-	strokeWeight(2);
-	line(0, 100, 100, 0);
-
-
-
-	border(Color.rgb(52));
+	background(Color.rgb(255));
+	drawer.draw();
 }
 
-function f(x) {
-	let a = Number(aInput.value);
-	let b = Number(bInput.value);
-	let c = Number(cInput.value);
-
-	return a*x**2 + b*x + c; 
+function drawRoots(root1, root2) {
 }
