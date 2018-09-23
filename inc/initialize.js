@@ -5,13 +5,29 @@ let aInput, bInput, cInput;
 let root1Container;
 let root2Container;
 
+let minWidthRangeInput, maxWidthRangeInput;
+let submitWidthRangeButton;
+
+let minHeightRangeInput, maxHeightRangeInput;
+let submitHeightRangeButton;
+
+let xScaleGridInput, yScaleGridInput;
+let submitGridScaleButton;
+
+let curveResolutionInput;
+let submitCurveResolutionInput;
+
 let drawer;
 
 window.onload = init;
 
 function init() {
 	initElements();
-	drawCurve()
+	updatePolynomialFunction();
+	updateWidthRange();
+	updateHeightRange();
+	updateGridScale();
+	updateCurveResolution();
 }
 
 function initElements() {
@@ -24,57 +40,38 @@ function declareElements() {
 	aInput = document.getElementById("aInput");
 	bInput = document.getElementById("bInput");
 	cInput = document.getElementById("cInput");
-	canvas = document.getElementById("curve");
+
 	root1Container = document.getElementById("root1Container");
 	root2Container = document.getElementById("root2Container");
+
+	canvas = document.getElementById("graph");
+	
+	minWidthRangeInput = document.getElementById("minWidthRangeInput");
+	maxWidthRangeInput = document.getElementById("maxWidthRangeInput");
+	submitWidthRangeButton = document.getElementById("submitWidthRangeButton");
+
+	minHeightRangeInput = document.getElementById("minHeightRangeInput");
+	maxHeightRangeInput = document.getElementById("maxHeightRangeInput");
+	submitHeightRangeButton = document.getElementById("submitHeightRangeButton");
+
+	xScaleGridInput = document.getElementById("xScaleGridInput");
+	yScaleGridInput = document.getElementById("yScaleGridInput");
+	submitGridScaleButton = document.getElementById("submitGridScaleButton");
+
+	curveResolutionInput = document.getElementById("curveResolutionInput");
+	submitCurveResolutionButton = document.getElementById("submitCurveResolutionButton");
 
 	drawer = new GraphDrawer(canvas);
 }
 
 function setEventListeners() {
-	aInput.addEventListener("change", inputListener);
-	bInput.addEventListener("change", inputListener);
-	cInput.addEventListener("change", inputListener);
+	aInput.addEventListener("change", updatePolynomialFunction);
+	bInput.addEventListener("change", updatePolynomialFunction);
+	cInput.addEventListener("change", updatePolynomialFunction);
+
+	submitWidthRangeButton.addEventListener("click", updateWidthRange);
+	submitHeightRangeButton.addEventListener("click", updateHeightRange);
+	submitGridScaleButton.addEventListener("click", updateGridScale);
+	submitCurveResolutionButton.addEventListener("click", updateCurveResolution);
 }
 
-function inputListener() {
-
-	if(aInput.value !== "" && bInput.value !== "" && cInput.value !== "") {
-		let a = Number(aInput.value);
-		let b = Number(bInput.value);
-		let c = Number(cInput.value);
-		let delta = Math.pow(b, 2) - 4*a*c;
-		
-		drawer.setFunction(x => a*(x**2) + b*x + c);
-		drawCurve();
-		
-		if(delta < 0)
-			setRootsValue("Pas dans ℝ");
-		else if(delta === 0) {
-			setRootsValue(-b/2*a);
-		} else {
-			setRootsValue((-b + Math.sqrt(delta))/2*a,
-				      (-b - Math.sqrt(delta))/2*a);
-		}
-	} else
-		clearRootContainers();
-}
-
-function setRootsValue(root1, root2=root1) {
-	clearRootContainers();
-	root1Container.insertAdjacentText("beforeend", root1);
-	root2Container.insertAdjacentText("beforeend", root2);
-}
-
-function clearRootContainers() {
-	root1Container.innerHTML = "";
-	root2Container.innerHTML = "";
-}
-
-function drawCurve() {
-	background(Color.rgb(255));
-	drawer.draw();
-}
-
-function drawRoots(root1, root2) {
-}

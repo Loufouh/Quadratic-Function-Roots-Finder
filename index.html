@@ -16,6 +16,8 @@
 	<script src="inc/drawJS/shapes.js"></script>
 	<script src="inc/drawJS/text.js"></script>
 
+	<script src="inc/graph_parameters.js"></script>
+	<script src="inc/polynomial.js"></script>
 	<script src="inc/initialize.js"></script>
 	
 </head>
@@ -44,7 +46,34 @@
 				</div>
 			</div>
 
-			<canvas id="curve" width="550" height="550">Le navigateur n'a pas réussi à charger le canvas</canvas>
+			<div id="graphContainer">
+				<canvas id="graph" width="550" height="550">Le navigateur n'a pas réussi à charger le canvas</canvas>
+				<div id="graphParametersContainer">
+					<div id="graphWidthRangeParametersContainer" class="subGraphParametersContainer">
+						<label>Intervalle largeur</label>
+						<input id="minWidthRangeInput" placeholder="min" type="number">
+						<input id="maxWidthRangeInput" placeholder="max" type="number">
+						<button id="submitWidthRangeButton">Valider</button>
+					</div>
+					<div id="graphHeightRangeParametersContainer" class="subGraphParametersContainer">
+						<label>Intervalle hauteur</label>
+						<input id="minHeightRangeInput" placeholder="min" type="number">
+						<input id="maxHeightRangeInput" placeholder="max" type="number">
+						<button id="submitHeightRangeButton">Valider</button>
+					</div>
+					<div id="graphGridParametersContainer" class="subGraphParametersContainer">
+						<label>Dimensions grille</label>
+						<input id="xScaleGridInput" placeholder="largeur case" type="number">
+						<input id="yScaleGridInput" placeholder="hauteur case" type="number">
+						<button id="submitGridScaleButton">Valider</button>
+					</div>
+					<div id="graphResolutionParametersContainer" class="subGraphParametersContainer">
+						<label>Resolution courbe</label>
+						<input id="curveResolutionInput" placeholder="résolution" type="number" step="0.1">
+						<button id="submitCurveResolutionButton">Valider</button>
+					</div>
+				</div>
+			</div>
 		</section>
 	</div>
 </body>
