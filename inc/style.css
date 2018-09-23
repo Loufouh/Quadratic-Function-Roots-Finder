@@ -80,10 +80,7 @@ input[type='number'] {
 }
 
 .disableTextSelection {
-	-webkit-user-select: none;  
-  	-moz-user-select: none;    
-  	-ms-user-select: none;      
-  	user-select: none;
+	user-select: none;  
 }
 
 .subGraphParametersContainer {
@@ -123,7 +120,6 @@ input[type='number'] {
 	min-width: 20%;
 	display: flex;
 	flex-direction: column;
-	align-items: left;
 }
 
 #graphContainer {
