@@ -9,7 +9,7 @@ class GraphDrawer {
 		this.context = canvas.getContext("2d");
 
 		this.func = (x)=>0;
-		this.funcColor = Color.rgb(0, 0);
+		this.funcColor = Color.rgb(110, 255, 110);
 		this.funcRange = new Vector(-Infinity, Infinity);
 
 		this.widthRange = new Vector(-100, 100);
@@ -61,7 +61,7 @@ class GraphDrawer {
 		let currentPoint = this.getAbsolutePos( new Vector(drawRange.x, this.func(drawRange.x)) );
 
 		strokeWeight(2);
-		stroke(Color.rgb(110, 255, 110));
+		stroke(this.funcColor);
 
 		for(let i = drawRange.x + this.resolution; i < drawRange.y + this.resolution; i += this.resolution) {
 			let lastPoint = currentPoint;
@@ -85,7 +85,7 @@ class GraphDrawer {
 				  Math.map(pos.y, this.heightRange.x, this.heightRange.y, canvas.height, 0));
 	}
 
-	setFunction(func, color=Color.rgb(0)) {
+	setFunction(func, color=Color.rgb(110, 255, 110)) {
 		this.func = func;
 		this.funcColor = color;
 	}
