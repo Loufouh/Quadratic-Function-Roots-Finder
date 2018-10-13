@@ -18,7 +18,8 @@ function updatePolynomialFunction() {
 		else
 			setRootsValue( Number.parseFloat( (-b + Math.sqrt(delta))/(2*a) ).toPrecision(4),
 				       Number.parseFloat( (-b - Math.sqrt(delta))/(2*a) ).toPrecision(4) );
-	} else
+	} else {
 		clearRootContainers();
+	}
 }
 
