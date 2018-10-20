@@ -15,7 +15,7 @@ let xScaleGridInput, yScaleGridInput;
 let submitGridScaleButton;
 
 let curveResolutionInput;
-let submitCurveResolutionInput;
+let submitCurveResolutionButton;
 
 let drawer;
 
